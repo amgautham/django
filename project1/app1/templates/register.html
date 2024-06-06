@@ -1,0 +1,27 @@
+<html>
+    {% load static %}
+    {% load widget_tweaks %}    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Register.css' %}">
+</head>
+<body>
+    <form action="{% url 'register' %}" method = "POST">
+        <h3>Register</h3>
+        {% csrf_token %}
+        {% render_field Rform.username placeholder='username' %}<br>
+        {%render_field Rform.password placeholder='password'%}<br>
+        {%render_field Rform.email placeholder='email'%}<br>
+        {%render_field Rform.first_name placeholder='firstname'%}<br>
+        {%render_field Rform.last_name placeholder='lastname'%}<br>
+        <button type="submit">submit</button>
+    </form>
+    {%if messages %}
+        {% for message in messages%}
+        <strong>{{message}}</strong>
+        {%endfor%}
+    {%endif%}
+</body>
+</html>
